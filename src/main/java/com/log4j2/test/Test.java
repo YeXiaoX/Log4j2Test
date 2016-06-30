@@ -14,20 +14,32 @@ public class Test {
 
     public static void main(String[] args) {
 
-        MDC.put("username", "admin");
-        MDC.put("sessionID", "1234");
+        for (int i=0;i<10000;i++){
+            logger.info("{}",i);
+            logger.error("");
+            logger.debug("");
+            logger.trace("");
+            logger.fatal("");
+            logger.warn("");
 
-        if (logger.isTraceEnabled()) {
-            logger.debug("log4j trace message");
         }
-        if (logger.isDebugEnabled()) {
-            logger.debug("log4j debug message");
-        }
-        if (logger.isInfoEnabled()) {
-            logger.debug("log4j info message");
-        }
-        if(logger.isErrorEnabled()){
-            logger.error(null,"log4j error message");
-        }
+
+
+
+//        MDC.put("username", "admin");
+//        MDC.put("sessionID", "1234");
+//
+//        if (logger.isTraceEnabled()) {
+//            logger.debug("log4j trace message");
+//        }
+//        if (logger.isDebugEnabled()) {
+//            logger.debug("log4j debug message");
+//        }
+//        if (logger.isInfoEnabled()) {
+//            logger.debug("log4j info message");
+//        }
+//        if(logger.isErrorEnabled()){
+//            logger.error(null,"log4j error message");
+//        }
     }
 }
