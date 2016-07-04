@@ -14,7 +14,7 @@ public class Test {
 
     public static void main(String[] args) {
 
-        for (int i=0;i<10000;i++){
+        for (int i=0;i<1000;i++){
             logger.info("{}",i);
             logger.error("");
             logger.debug("");
