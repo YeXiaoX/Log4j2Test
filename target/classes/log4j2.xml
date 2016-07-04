@@ -13,13 +13,13 @@
         <RollingFile name="MyFileAppender" fileName="testProject.log" append="true" filepattern="${logPath}/testProject-%d{yyyy-MM-dd_HH}-%i.zip">
             <PatternLayout pattern="%X{username}  %d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
             <Policies>
-                <!--<SizeBasedTriggeringPolicy size="10k"/>  &lt;!&ndash;基于大小新建日志文件，这里大小是100兆&ndash;&gt;-->
-                <TimeBasedTriggeringPolicy interval="1" modulate="true"/><!--基于时间触发新建日志文件，这里1表示一天-->
+                <SizeBasedTriggeringPolicy size="10k"/>  <!--基于大小新建日志文件，这里大小是100兆&ndash;&gt;-->
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/><!--基于时间触发打包日志文件，这里1是基于上面的时间配置，上面是小时，这里就是一小时打一次包-->
             </Policies>
             <DefaultRolloverStrategy max="20"/><!--在定义的时间段内创建的日志文件的个数最多为20个，这里一小时最多创建20个-->
         </RollingFile>
 
-        <File name="app_info" fileName="${logPath}/app/info.log" append="false">
+        <File name="app_info" fileName="${logPath}/app/info.log" append="false"><!--append="false" 表示在日志文件中覆盖之前所写的，等于true表示在之前缩写文件之后写-->
             <Filters>
                 <ThresholdFilter level="warn" onMatch="DENY" onMismatch="NEUTRAL"/><!--拒绝warn及以上级别-->
                 <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/><!--剩下的只接受info及以上级别-->
@@ -36,13 +36,13 @@
         </File>
         <File name="app_error" fileName="${logPath}/app/error.log" append="false">
             <Filters>
-                <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
+                <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/><!--warn及以上级别都接收-->
             </Filters>
             <PatternLayout pattern="%d{yyyy.MM.dd HH:mm:ss z} %-5level %class{36}.%M()/%L - %msg%xEx%n"/>
         </File>
     </Appenders>
     <Loggers>
-        <Root level="${level}"><!--只输入界别高于debug的日志信息-->
+        <Root level="${level}"><!--只输入界别高于trace的日志信息-->
             <AppenderRef ref="Console"/>
             <AppenderRef ref="MyFileAppender"/>
             <appender-ref ref="app_debug"/>
